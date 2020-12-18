@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./components/navbar";
+import Movies from "./components/movies";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    moviesList: [
+      { id: 1, value: 1 },
+      // { id: 2, value: 1 },
+    ],
+  };
+  render() {
+    return (
+      <React.Fragment>
+        <NavBar></NavBar>
+        <main className="container">
+          {this.state.moviesList.map((movies) => (
+            <Movies key={movies.id}>
+              {/*Passing contents to child components */}
+              <h4>Movies List# {movies.id}</h4>
+            </Movies>
+          ))}
+        </main>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
